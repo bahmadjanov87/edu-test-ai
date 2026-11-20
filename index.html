@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080f22">
+  <title>EDU TEST AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="EDU TEST AI bosh sahifa">
+        <span class="brand-mark">E</span>
+        <span><b>EDU TEST</b><small>AI LEARNING</small></span>
+      </a>
+      <div class="side-label">ASOSIY</div>
+      <button class="nav-link active" data-page="dashboard"><span>⌂</span> Bosh sahifa</button>
+      <button class="nav-link" data-page="subjects"><span>▦</span> Fanlar</button>
+      <button class="nav-link" data-page="tests"><span>☷</span> Testlar</button>
+      <button class="nav-link" data-page="results"><span>▤</span> Natijalarim</button>
+      <div class="side-label side-label-gap">SHAXSIY</div>
+      <button class="nav-link" data-page="profile"><span>◉</span> Profil</button>
+      <div class="sidebar-bottom">
+        <div class="mini-ai"><span class="ai-dot"></span><div><b>AI tizimi</b><small>Keyinroq ulanadi</small></div></div>
+        <button class="nav-link logout" id="logoutBtn"><span>↪</span> Chiqish</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menyuni ochish">☰</button>
+        <div class="breadcrumb">EDU TEST <span>/</span> <b id="crumb">Bosh sahifa</b></div>
+        <div class="top-actions">
+          <span class="class-chip" id="classChip">9-sinf</span>
+          <button class="icon-btn" id="themeBtn" aria-label="Mavzuni almashtirish">☾</button>
+          <button class="avatar" id="avatarBtn">U</button>
+        </div>
+      </header>
+
+      <section class="page active" id="dashboardPage">
+        <div class="welcome-row">
+          <div><div class="eyebrow">TA'LIMDA YANGI BOSQICH</div><h1>Xush kelibsiz, <span id="welcomeName">O‘quvchi</span>! <span class="wave">✦</span></h1><p class="muted">Bugun bilimlaringizni sinab ko‘rish uchun ajoyib kun.</p></div>
+          <div class="date-pill" id="todayDate"></div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-content"><span class="hero-tag">BILIMINGIZNI SINANG</span><h2>Har bir test —<br>yangi imkoniyat.</h2><p>O‘zingizga mos fanni tanlang va natijangizni kuzatib boring.</p><button class="primary-btn" data-go="tests">Testni boshlash <span>→</span></button></div>
+          <div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-book">✦</div><div class="float-card float-top">✓ <span>Bilim</span></div><div class="float-card float-bottom">★ <span>Natija</span></div></div>
+        </div>
+        <div class="section-heading"><div><h2>Umumiy ko‘rsatkichlar</h2><p class="muted">O‘qish jarayoningiz statistikasi</p></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon blue">▣</div><div class="stat-label">Ishlangan testlar</div><strong id="testsDone">0</strong><small>Jami yakunlangan</small></article>
+          <article class="stat-card"><div class="stat-icon purple">％</div><div class="stat-label">O‘rtacha natija</div><strong id="averageScore">0.0 <i>/ 10</i></strong><small>10 ballik tizimda</small></article>
+          <article class="stat-card"><div class="stat-icon cyan">◈</div><div class="stat-label">Tanlangan sinf</div><strong id="statClass">9-sinf</strong><small>Profilingiz bo‘yicha</small></article>
+        </div>
+        <div class="section-heading"><div><h2>Fanlar</h2><p class="muted">Sinfingizga mos fanlardan birini tanlang</p></div><button class="text-btn" data-go="subjects">Barchasi →</button></div>
+        <div class="subject-grid" id="dashboardSubjects"></div>
+        <div class="bottom-note"><span class="note-icon">✧</span><div><b>EDU TEST AI haqida</b><p>Hozircha testlar demo savollar asosida ishlaydi. Sun’iy intellekt keyingi bosqichda ulanadi.</p></div></div>
+      </section>
+
+      <section class="page" id="subjectsPage">
+        <div class="page-heading"><div class="eyebrow">BILIM OLAMIGA XUSH KELIBSIZ</div><h1>Fanlar</h1><p class="muted">Sinfingiz uchun mavjud fanlarni tanlang.</p></div>
+        <div class="toolbar"><input id="subjectSearch" type="search" placeholder="Fan nomini qidiring..." autocomplete="off"><span class="result-count" id="subjectCount"></span></div>
+        <div class="subject-grid large" id="allSubjects"></div>
+      </section>
+
+      <section class="page" id="testsPage">
+        <div class="page-heading"><div class="eyebrow">BILIMINGIZNI TEKSHIRING</div><h1>Testlar</h1><p class="muted">Fan tanlang va 20 ta savoldan iborat testni boshlang.</p></div>
+        <div class="filter-row"><label for="testSubject">Fan</label><select id="testSubject"></select><button class="primary-btn" id="startTestBtn">Testni boshlash →</button></div>
+        <div class="test-info-card"><div class="test-info-icon">☷</div><div><b>Test qanday ishlaydi?</b><p>Har bir testda 20 ta savol bor. Har bir to‘g‘ri javob 0.5 ball. Yakuniy natija 10 ballik tizimda hisoblanadi.</p></div></div>
+        <div id="testArea"></div>
+      </section>
+
+      <section class="page" id="resultsPage">
+        <div class="page-heading"><div class="eyebrow">O‘SISHINGIZNI KUZATING</div><h1>Natijalarim</h1><p class="muted">Yakunlagan testlaringiz va ballaringiz.</p></div>
+        <div id="resultsList"></div>
+      </section>
+
+      <section class="page" id="profilePage">
+        <div class="page-heading"><div class="eyebrow">SHAXSIY MA'LUMOTLAR</div><h1>Profil</h1><p class="muted">Ma’lumotlaringizni boshqaring.</p></div>
+        <form class="profile-card" id="profileForm">
+          <label>Ismingiz<input id="profileName" maxlength="32" required></label>
+          <label>Sinfingiz<select id="profileClass"></select></label>
+          <label>Login<input id="profileLogin" disabled></label>
+          <button class="primary-btn" type="submit">Saqlash</button>
+        </form>
+      </section>
+
+      <footer class="footer"><span>© 2026 EDU TEST AI</span><span>Bilim — kelajak kaliti.</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="authModal">
+    <form class="auth-card" id="authForm">
+      <div class="auth-logo">E</div><div class="eyebrow">EDU TEST AI PLATFORMASI</div><h1 id="authTitle">Xush kelibsiz!</h1><p class="muted" id="authDescription">Davom etish uchun profilingizga kiring.</p>
+      <div id="nameField" class="hidden"><label>Ismingiz<input id="authName" maxlength="32" placeholder="Ismingizni kiriting"></label></div>
+      <label>Login<input id="authLogin" autocomplete="username" placeholder="Masalan: ali_09" required minlength="3" maxlength="24"></label>
+      <label>Parol<input id="authPassword" type="password" autocomplete="current-password" placeholder="Parolingiz" required minlength="4"></label>
+      <div id="classField" class="hidden"><label>Sinfingiz<select id="authClass"></select></label></div>
+      <p class="auth-error" id="authError"></p>
+      <button class="primary-btn full" type="submit" id="authSubmit">Kirish</button>
+      <button class="text-btn auth-switch" type="button" id="authSwitch">Hisobingiz yo‘qmi? Ro‘yxatdan o‘tish</button>
+      <small class="auth-disclaimer">Demo versiya: hisob ma’lumotlari faqat ushbu qurilmada saqlanadi. Haqiqiy xavfsiz akkaunt uchun keyinchalik server kerak bo‘ladi.</small>
+    </form>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
